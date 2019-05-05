@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-// import { Editor } from 'draft-js-plugins-editor'
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin'
 import {
   CompositeDecorator,
   // getDefaultKeyBinding,
-  Editor,
+  // Editor,
   EditorState,
+  DefaultDraftBlockRenderMap,
 } from 'draft-js'
 import 'draft-js-side-toolbar-plugin/lib/plugin.css'
 
 import InlinePassword from 'components/atoms/InlinePassword'
 
-// import PasswordButton from './PasswordButton'
+import PasswordButton from './PasswordButton'
 
 import style from './Note.module.scss'
 
-// const inlineToolbarPlugin = createInlineToolbarPlugin()
-// const { InlineToolbar } = inlineToolbarPlugin
-// const plugins = [ inlineToolbarPlugin ]
+const inlineToolbarPlugin = createInlineToolbarPlugin()
+const { InlineToolbar } = inlineToolbarPlugin
+const plugins = [ inlineToolbarPlugin ]
 
 // class MediaComponent extends Component {
 //   render () {
@@ -68,11 +69,30 @@ const compositeDecorator = new CompositeDecorator([
   },
 ])
 
+function myBlockRenderer (contentBlock) {
+  const type = contentBlock.getType()
+  if (type === 'PASSWORD') {
+    return {
+      component: InlinePassword,
+      editable: false,
+      props: {
+        foo: 'bar',
+      },
+    }
+  }
+}
+
+const styleMap = {
+  PASSWORD: {
+    textDecoration: 'line-through',
+  },
+}
+
 class Note extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      editorState: EditorState.createEmpty(compositeDecorator),
+      editorState: createEditorStateWithText(''), // EditorState.createEmpty(/*compositeDecorator*/),
     }
   }
 
@@ -83,10 +103,18 @@ class Note extends Component {
         <Editor
           ref={element => (this.editor = element)}
           editorState={this.state.editorState}
-          // plugins={plugins}
-          onChange={editorState => this.setState({ editorState })}
+          plugins={plugins}
+          onChange={editorState => {
+            this.setState({ editorState })
+            console.log('onChange')
+          }}
+          customStyleMap={styleMap}
         />
-        <div className={style.toolbar} />
+        <div className={style.toolbar}>
+          <InlineToolbar>
+            {externalProps => <PasswordButton {...externalProps} />}
+          </InlineToolbar>
+        </div>
       </div>
     )
   }
