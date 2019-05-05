@@ -1,0 +1,113 @@
+.Main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  opacity: 1;
+
+  &.loading {
+    opacity: 0;
+  }
+}
+
+.welcome {
+  flex: 1 1 auto;
+}
+
+.main {
+  flex: 0 0 0;
+  transition: all 2s ease;
+
+  &.accept-lost {
+    flex: 0 0 100%;
+  }
+}
+
+.panel {
+  flex: 0 0 450px;
+  position: relative;
+  overflow: hidden;
+  transition: all 2s ease;
+
+  &.edit {
+    flex: 1 0 100vw;
+  }
+}
+
+.sidePanel,
+.full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100%);
+
+  &.loaded {
+    transition: all 0.7s ease;
+  }
+}
+
+.sidePanel {
+  flex: 0 0 450px;
+}
+
+.connect {
+  &.connect-google {
+    transform: translateX(0);
+  }
+
+  &.setup-passphrase,
+  &.confirm-passphrase,
+  &.edit {
+    transform: translateX(-100%);
+  }
+}
+
+.setup {
+  &.connect-google {
+    transform: translateX(100%);
+  }
+
+  &.setup-passphrase {
+    transform: translateX(0%);
+  }
+
+  &.confirm-passphrase,
+  &.edit {
+    transform: translateX(-100%);
+  }
+}
+
+.confirm {
+  &.connect-google,
+  &.setup-passphrase {
+    transform: translateX(100%);
+  }
+
+  &.confirm-passphrase {
+    transform: translateX(0%);
+  }
+
+  &.edit {
+    transform: translateX(-100%);
+  }
+}
+
+.full {
+  flex: 0 0 100vw;
+
+  &.connect-google,
+  &.setup-passphrase,
+  &.confirm-passphrase {
+    transform: translateX(100%);
+  }
+
+  &.edit {
+    transform: translateX(0%);
+  }
+}

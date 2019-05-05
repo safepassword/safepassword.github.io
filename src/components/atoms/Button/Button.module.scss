@@ -1,0 +1,38 @@
+@import '~styles/index.scss';
+
+.Button {
+  border: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.65rem;
+  background: $ternary;
+  color: $ternary_hue2;
+  fill: $ternary_hue2;
+
+  &.basic {
+    background: transparent;
+    color: $ternary_hue2;
+    fill: $ternary_hue2;
+  }
+
+  &.primary {
+    fill: white;
+    color: white;
+    background: $primary;
+    box-shadow:
+      0 1rem 2.5rem rgba(22, 28, 45, 0.1),
+      0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
+
+    &:hover {
+      background: $primary_hue2;
+    }
+  }
+}

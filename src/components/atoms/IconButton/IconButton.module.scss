@@ -1,0 +1,33 @@
+@import '~styles/index.scss';
+
+.IconButton {
+  border: 0;
+  outline: none;
+  border-radius: 999em;
+  transition: all 0.25s ease;
+
+  $width: 45px;
+
+  width: $width;
+  height: $width;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  fill: white;
+
+  &:disabled {
+    background: $ternary;
+    cursor: not-allowed;
+    fill: $ternary_hue2;
+  }
+
+  &:not(:disabled) {
+    background: $primary;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary_hue2;
+    }
+  }
+}

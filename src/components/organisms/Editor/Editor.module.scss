@@ -1,0 +1,36 @@
+@import '~styles/index.scss';
+
+$maxWidth: 800px;
+
+.Editor {
+  overflow: auto;
+}
+
+.feedback {
+  padding-top: 0.2rem;
+}
+
+.textarea {
+  border: 0;
+  border-radius: 0.65rem;
+  background: $ternary;
+  box-sizing: border-box;
+  padding: 0.8rem 1.2rem;
+  color: $secondary_hue1;
+  transition: all 0.25s ease;
+  outline: none;
+  display: inline-block;
+  width: 100%;
+  text-align: inherit;
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content {
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: auto;
+  padding: $padding 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  user-select: text;
+}

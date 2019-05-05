@@ -1,0 +1,81 @@
+@import '~styles/index.scss';
+
+.item {
+  user-select: text;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0.5rem 0;
+  border-radius: 0.65rem;
+  transition: 0.2s all ease;
+  opacity: 0.5;
+
+  &.editing {
+    opacity: 1;
+  }
+}
+
+.nonEditable {
+  &:hover {
+    // background: $ternary;
+  }
+}
+
+.target {
+  user-select: text;
+  flex: 10000 10 auto;
+  margin-right: $padding;
+}
+
+.password {
+  user-select: text;
+  flex: 1 1 auto;
+  line-height: 0.7rem;
+  text-align: right;
+}
+
+.input {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+  border: 0;
+}
+
+.submit {
+  flex: 0 0 46px;
+  margin-left: $padding;
+}
+
+.more {
+  width: 0;
+  flex: 0 0 0;
+  position: relative;
+}
+
+.list {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  opacity: 0;
+  transition: 0.2s all ease;
+}
+
+.item:hover,
+.item.active {
+  .list {
+    opacity: 1;
+  }
+}
+
+.menu {
+  position: absolute;
+  left: $padding;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -$padding/2;
+  left: $padding;
+}

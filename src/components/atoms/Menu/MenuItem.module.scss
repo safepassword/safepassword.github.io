@@ -1,0 +1,23 @@
+@import '~styles/index.scss';
+
+.MenuItem {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  margin: 0;
+  white-space: nowrap;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  text-align: inherit;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $ternary;
+  }
+
+  &:hover {
+    background: $ternary;
+  }
+}

@@ -1,0 +1,43 @@
+@import '~styles/index.scss';
+
+.Input {
+  // border: 0.1rem solid $primary;
+  border-radius: 0.65rem;
+  background: $ternary;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.2rem;
+
+  .input {
+    padding: 0.8rem 0;
+    background: transparent;
+    border: 0;
+    color: $secondary_hue1;
+    transition: all 0.25s ease;
+    outline: none;
+    display: inline-block;
+    width: 100%;
+    text-align: inherit;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+
+    &.margin {
+      margin-left: 0.5rem;
+    }
+
+    &::placeholder {
+      transition: all 0.25s ease;
+      color: $ternary_hue2;
+      opacity: 1;
+    }
+
+    &:focus {
+      &::placeholder {
+        opacity: 0.6;
+      }
+      // border: 0.1rem solid $primary_hue2;
+    }
+  }
+}

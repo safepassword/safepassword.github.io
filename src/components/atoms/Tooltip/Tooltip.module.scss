@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.Tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  background: black;
+  color: white;
+  border-radius: 0.25rem;
+  opacity: 0;
+  white-space: nowrap;
+  transform: translateX(-10px);
+
+  &.showing {
+    transition: 400ms all linear;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

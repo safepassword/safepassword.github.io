@@ -1,0 +1,33 @@
+@import '~styles/index.scss';
+
+.Note {
+  position: relative;
+  border: 0;
+  border-radius: 0.65rem;
+  background: $ternary;
+  box-sizing: border-box;
+  padding: 0.8rem 1.2rem;
+  color: $secondary_hue1;
+  transition: all 0.25s ease;
+  outline: none;
+  display: inline-block;
+  width: 100%;
+  text-align: inherit;
+  // font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  // line-height: 0.5rem;
+
+  :global(.public-DraftEditor-content) {
+    min-height: 140px;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: -1.1rem;
+  }
+
+  .password {
+    color: red;
+    font-weight: bold;
+  }
+}

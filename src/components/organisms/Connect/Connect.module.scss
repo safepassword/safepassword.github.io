@@ -1,0 +1,36 @@
+@import '~styles/index.scss';
+
+.Connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 25px;
+  vertical-align: middle;
+}
+
+.introduction {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2rem;
+  color: $secondary;
+  line-height: 1.5rem;
+}
+
+.connect {
+  padding: 1rem 2rem;
+  transform: translate3d(0, 0, 0);
+
+  &:hover {
+    box-shadow:
+      0 1rem 2.5rem rgba(22, 28, 45, 0.1),
+      0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
+    transform: translate3d(0, -3px, 0);
+  }
+}

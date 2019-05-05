@@ -1,0 +1,61 @@
+@import '~styles/index.scss';
+
+$maxWidth: 800px;
+
+.content {
+  max-width: 800px;
+  margin: auto;
+  padding: $padding;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.search {
+  flex: 1 1 auto;
+}
+
+.add {
+  margin-right: $padding;
+  flex: 0 0 46px;
+  height: 46px;
+
+  .addIcon {
+    fill: white;
+  }
+
+  &:hover {
+    transform: none;
+  }
+}
+
+.avatar {
+  margin-left: $padding;
+  flex: 0 0 46px;
+  height: 46px;
+  background: url('https://randomuser.me/api/portraits/men/32.jpg');
+  background-size: 100%;
+  background-position: center center;
+
+  .addIcon {
+    fill: white;
+  }
+
+  &:hover {
+    background: url('https://randomuser.me/api/portraits/men/32.jpg');
+    background-size: 110%;
+    background-position: center center;
+  }
+}
+
+.menu {
+  position: absolute;
+  right: $padding;
+  bottom: $padding / 2;
+}

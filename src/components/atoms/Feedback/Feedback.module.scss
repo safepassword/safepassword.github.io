@@ -1,0 +1,17 @@
+@import '~styles/index.scss';
+
+.Feedback {
+  text-align: center;
+  font-size: 0.7rem;
+  color: $secondary;
+  height: 2rem;
+  font-family: 'Roboto', sans-serif;
+
+  &.show {
+    opacity: 1;
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+}
