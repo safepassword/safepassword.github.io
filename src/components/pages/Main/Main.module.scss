@@ -63,6 +63,7 @@
 
   &.setup-passphrase,
   &.confirm-passphrase,
+  &.sign-in,
   &.edit {
     transform: translateX(-100%);
   }
@@ -78,6 +79,7 @@
   }
 
   &.confirm-passphrase,
+  &.sign-in,
   &.edit {
     transform: translateX(-100%);
   }
@@ -93,6 +95,23 @@
     transform: translateX(0%);
   }
 
+  &.sign-in,
+  &.edit {
+    transform: translateX(-100%);
+  }
+}
+
+.signIn {
+  &.connect-google,
+  &.setup-passphrase,
+  &.confirm-passphrase {
+    transform: translateX(100%);
+  }
+
+  &.sign-in {
+    transform: translateX(0%);
+  }
+
   &.edit {
     transform: translateX(-100%);
   }
@@ -103,7 +122,8 @@
 
   &.connect-google,
   &.setup-passphrase,
-  &.confirm-passphrase {
+  &.confirm-passphrase,
+  &.sign-in {
     transform: translateX(100%);
   }
 

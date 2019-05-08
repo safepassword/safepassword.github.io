@@ -22,23 +22,33 @@ const SetupPassphrase = ({ className, onCancel, onSubmit, show }) => {
         </button>
       }
     >
-      <div className={style.introduction}>
-        Protect your vault with a passphrase
-      </div>
-      <Input
-        className={style.input}
-        type="password"
-        value={passphrase}
-        placeholder="Enter a strong secret passphrase"
-        onChange={setPassphrase}
-        focus={show}
-      />
-      <IconButton
-        onClick={() => onSubmit(passphrase)}
-        disabled={passphrase.length < 2}
+      <form
+        className={style.form}
+        onSubmit={event => {
+          event.preventDefault()
+          event.stopPropagation()
+          onSubmit(passphrase)
+        }}
       >
-        <Right className={style.icon} />
-      </IconButton>
+        <div className={style.introduction}>
+          Protect your vault with a passphrase
+        </div>
+        <Input
+          className={style.input}
+          type="password"
+          value={passphrase}
+          placeholder="Enter a strong secret passphrase"
+          onChange={setPassphrase}
+          focus={show}
+        />
+        <IconButton
+          onClick={() => onSubmit(passphrase)}
+          disabled={passphrase.length < 2}
+        >
+          <Right className={style.icon} />
+        </IconButton>
+        <input type="submit" className={style.submit} />
+      </form>
     </SidePanel>
   )
 }

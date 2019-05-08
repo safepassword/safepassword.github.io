@@ -19,6 +19,10 @@ class Input extends Component {
     }
   }
 
+  select () {
+    this.input.select()
+  }
+
   render () {
     const {
       type,

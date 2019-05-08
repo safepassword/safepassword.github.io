@@ -76,7 +76,7 @@ function myBlockRenderer (contentBlock) {
       component: InlinePassword,
       editable: false,
       props: {
-        foo: 'bar',
+        text: contentBlock.getText(),
       },
     }
   }
@@ -109,6 +109,7 @@ class Note extends Component {
             console.log('onChange')
           }}
           customStyleMap={styleMap}
+          blockRendererFn={myBlockRenderer}
         />
         <div className={style.toolbar}>
           <InlineToolbar>

@@ -6,21 +6,44 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
+  z-index: 4000;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0);
+  transition: all 0.25s ease;
+
+  &.show {
+    background: rgba(255, 255, 255, 0.7);
+  }
 }
 
-.Modal {
+.Popup {
   padding: 1rem;
   border-radius: 0.65rem;
-  max-width: 400px;
+  // max-width: 400px;
   font-family: 'Roboto', sans-serif;
 
   &.warning {
     background: $warning;
     color: white;
+  }
+
+  &.normal {
+    box-shadow:
+      0 1rem 2.5rem rgba(22, 28, 45, 0.1),
+      0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
+    background: white;
+    color: black;
+  }
+
+  transform: translateY(1rem);
+  transition: all 0.25s ease;
+  opacity: 0;
+
+  &.show {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

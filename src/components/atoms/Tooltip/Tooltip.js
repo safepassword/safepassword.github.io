@@ -8,7 +8,6 @@ const Tooltip = ({ className, label, show }) => {
   useEffect(
     () => {
       setTimeout(() => {
-        console.log('showing')
         setShow(show)
       }, 20)
     },

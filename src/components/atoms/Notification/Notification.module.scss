@@ -1,0 +1,36 @@
+.Notification {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: black;
+  border-radius: 0.2rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  padding: 0.8rem;
+  opacity: 0;
+  transform: translateX(-5px);
+
+  &.showing {
+    transition: 400ms all linear;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .button {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 0.2rem;
+    text-transform: uppercase;
+    margin-left: 1rem;
+    border: none;
+    outline: none;
+    transition: 400ms all linear;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.3rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}

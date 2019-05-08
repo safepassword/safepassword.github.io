@@ -8,18 +8,22 @@ class PasswordButton extends Component {
     console.log('toggleStyle')
     event.preventDefault()
     this.props.setEditorState(
-      RichUtils.toggleInlineStyle(this.props.getEditorState(), 'PASSWORD')
+      RichUtils.toggleBlockType(this.props.getEditorState(), 'PASSWORD')
     )
   }
 
-  styleIsActive = () => {
-    return (
-      this.props.getEditorState &&
-      this.props
-        .getEditorState()
-        .getCurrentInlineStyle()
-        .has('PASSWORD')
-    )
+  blockTypeIsActive = () => {
+    // if the button is rendered before the editor
+    if (!this.props.getEditorState) {
+      return false
+    }
+
+    const editorState = this.props.getEditorState()
+    const type = editorState
+      .getCurrentContent()
+      .getBlockForKey(editorState.getSelection().getStartKey())
+      .getType()
+    return type === 'PASSWORD'
   }
 
   preventBubblingUp = event => {
@@ -30,7 +34,7 @@ class PasswordButton extends Component {
     return (
       <div onMouseDown={this.preventBubblingUp}>
         <button
-          className={this.styleIsActive() ? style.active : ''}
+          className={this.blockTypeIsActive() ? style.active : ''}
           onClick={this.toggleStyle}
         >
           Password

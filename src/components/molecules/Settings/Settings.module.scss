@@ -1,0 +1,43 @@
+@import '~styles/index.scss';
+
+.modal {
+  line-height: 1.4rem;
+  max-width: 650px;
+
+  .bold {
+    letter-spacing: 0.09rem;
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.name,
+.p {
+  margin: 0;
+  padding: 0;
+}
+
+.name {
+  padding-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.label {
+  flex: 1 1 auto;
+  padding: 1rem 0;
+}
+
+.action {
+  padding: 2rem 0 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 0.8rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}

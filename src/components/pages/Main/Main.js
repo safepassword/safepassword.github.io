@@ -5,11 +5,14 @@ import Panel from 'components/organisms/Panel'
 import Connect from 'components/organisms/Connect'
 import SetupPassphrase from 'components/organisms/SetupPassphrase'
 import ConfirmPassphrase from 'components/organisms/ConfirmPassphrase'
+import SignIn from 'components/organisms/Signin'
+
 import Editor from 'components/organisms/Editor'
 
 import style from './Main.module.scss'
 
 const stages = {
+  SIGN_IN: 'sign-in',
   CONNECT_GOOGLE: 'connect-google',
   SETUP_PASSPHRASE: 'setup-passphrase',
   CONFIRM_PASSPHRASE: 'confirm-passphrase',
@@ -17,15 +20,15 @@ const stages = {
 }
 
 const Main = () => {
-  const [ stage, setStage ] = useState(stages.EDIT)
+  const [ stage, setStage ] = useState(stages.SIGN_IN)
   const [ passphrase, setPassphrase ] = useState('')
-  const [ loading, setLoad ] = useState(false)
+  const [ loading, setLoad ] = useState(true)
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoad(false)
-  //   }, 1000)
-  // })
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(false)
+    }, 1000)
+  })
 
   const loadingClassName = loading ? style.loading : style.loaded
 
@@ -58,6 +61,14 @@ const Main = () => {
           onCancel={() => setStage(stages.SETUP_PASSPHRASE)}
           expectedPassphrase={passphrase}
           show={stage === stages.CONFIRM_PASSPHRASE}
+        />
+        <SignIn
+          className={`${style.sidePanel} ${style.signIn} ${
+            style[stage]
+          } ${loadingClassName}`}
+          onConfirm={() => setStage(stages.EDIT)}
+          expectedPassphrase="azerty"
+          show={stage === stages.SIGN_IN}
         />
         <Editor
           className={`${style.full} ${style[stage]} ${loadingClassName}`}

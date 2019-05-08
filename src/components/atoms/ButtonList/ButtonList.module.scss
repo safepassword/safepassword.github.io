@@ -1,29 +1,37 @@
 @import '~styles/index.scss';
 
-.Button {
-  border: 0;
-  font-size: 1.1rem;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  outline: none;
+.ButtonList {
   transition: all 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: 0.65rem;
-  background: $ternary;
-  color: $ternary_hue2;
-  fill: $ternary_hue2;
+}
 
-  &.basic {
-    background: transparent;
-    color: $ternary_hue2;
-    fill: $ternary_hue2;
+.button {
+  border: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background: $ternary;
+  // color: $ternary_hue2;
+  // fill: $ternary_hue2;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
   }
 
-  &.primary {
+  &.active {
     fill: white;
     color: white;
     background: $primary;
@@ -33,19 +41,6 @@
 
     &:hover {
       background: $primary_hue2;
-    }
-  }
-
-  &.error {
-    fill: white;
-    color: white;
-    background: $error;
-    box-shadow:
-      0 1rem 2.5rem rgba(22, 28, 45, 0.1),
-      0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
-
-    &:hover {
-      background: $error_hue2;
     }
   }
 }

@@ -1,20 +1,29 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Input from 'components/atoms/Input'
 import Button from 'components/atoms/Button'
 import Menu, { MenuItem } from 'components/atoms/Menu'
+import Settings from 'components/molecules/Settings'
 
 import { ReactComponent as Search } from 'assets/search.svg'
 import { ReactComponent as Add } from 'assets/plus.svg'
 
 import style from './Header.module.scss'
 
-const Header = ({ className, onQueryChange, query, focus, children }) => {
-  const [ menuVisible, toggleMenu ] = useState(false)
+const Header = ({
+  className,
+  onQueryChange,
+  query,
+  focus,
+  children,
+  onSubmit,
+}) => {
+  const menuRef = useRef(null)
+  const [ settingsAreOpen, openSettings ] = useState(false)
   return (
     <header className={style.header}>
-      <div className={style.content}>
+      <form className={style.content} onSubmit={onSubmit}>
         <div className={style.flex}>
           {/* <Button className={style.add} primary>
             <Add className={style.addIcon} />
@@ -29,21 +38,24 @@ const Header = ({ className, onQueryChange, query, focus, children }) => {
           />
           <Button
             className={style.avatar}
-            onClick={() => toggleMenu(!menuVisible)}
+            onClick={event => menuRef.current.toggle(event)}
           />
-          <Menu
-            className={style.menu}
-            open={menuVisible}
-            onClose={() => this.setState({ openMenu: false })}
-            position="right"
-          >
-            <MenuItem title="Switch to advanced mode" />
-            <MenuItem title="Settings" />
+          <Menu ref={menuRef} className={style.menu} position="right">
+            {/* <MenuItem title="Switch to advanced mode" /> */}
+            <MenuItem
+              title="Settings"
+              onClick={event => {
+                openSettings(true)
+                menuRef.current.close(event)
+              }}
+            />
             <MenuItem title="Sign out" />
           </Menu>
         </div>
         {children}
-      </div>
+        <input type="submit" value="Submit" className={style.hidden} />
+      </form>
+      <Settings show={settingsAreOpen} onClick={() => openSettings(false)} />
     </header>
   )
 }
@@ -54,6 +66,7 @@ Header.defaultProps = {
   query: '',
   focus: false,
   children: [],
+  onSubmit: () => {},
 }
 
 Header.propTypes = {
@@ -65,6 +78,7 @@ Header.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  onSubmit: PropTypes.func,
 }
 
 export default Header

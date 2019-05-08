@@ -8,9 +8,9 @@ import IconButton from 'components/atoms/IconButton'
 
 import { ReactComponent as Check } from 'assets/check.svg'
 
-import style from './ConfirmPassphrase.module.scss'
+import style from './Signin.module.scss'
 
-const ConfirmPassphrase = ({
+const Signin = ({
   className,
   onCancel,
   onConfirm,
@@ -21,21 +21,14 @@ const ConfirmPassphrase = ({
   const [ readOnly, setReadOnly ] = useState(false)
 
   return (
-    <SidePanel
-      className={className}
-      footer={
-        <button onClick={onCancel} className={style.forget}>
-          Go back
-        </button>
-      }
-    >
+    <SidePanel className={className}>
       <div className={style.introduction}>
-        Your passphrase is the only way to retrieve your passwords.
+        Use your secret passphrase to decrypt your data.
       </div>
       <Input
         className={style.input}
         type="password"
-        placeholder="Confirm passphrase"
+        placeholder="Enter your passphrase"
         value={passphrase}
         readOnly={readOnly}
         onChange={value => {
@@ -59,7 +52,7 @@ const ConfirmPassphrase = ({
   )
 }
 
-ConfirmPassphrase.defaultProps = {
+Signin.defaultProps = {
   className: '',
   onConfirm: () => {},
   onCancel: () => {},
@@ -67,7 +60,7 @@ ConfirmPassphrase.defaultProps = {
   show: false,
 }
 
-ConfirmPassphrase.propTypes = {
+Signin.propTypes = {
   className: PropTypes.string,
   onConfirm: PropTypes.func,
   onCancel: PropTypes.func,
@@ -75,4 +68,4 @@ ConfirmPassphrase.propTypes = {
   show: PropTypes.bool,
 }
 
-export default ConfirmPassphrase
+export default Signin

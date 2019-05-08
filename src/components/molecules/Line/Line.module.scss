@@ -2,9 +2,6 @@
 
 .item {
   user-select: text;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
   padding: 0.5rem 0;
   border-radius: 0.65rem;
   transition: 0.2s all ease;
@@ -12,6 +9,32 @@
 
   &.editing {
     opacity: 1;
+  }
+}
+
+.layout {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+}
+
+.indicator {
+  position: absolute;
+  height: 100%;
+
+  $width: 2rem;
+
+  left: -$width - 0.5rem;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    fill: black;
+    height: $width;
+    width: $width;
   }
 }
 
@@ -34,9 +57,13 @@
   text-align: right;
 }
 
-.input {
-  width: 0;
-  height: 0;
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  width: 0.001rem;
+  height: 0.001rem;
   overflow: hidden;
   box-sizing: border-box;
   outline: none;
@@ -78,4 +105,19 @@
   position: absolute;
   bottom: -$padding/2;
   left: $padding;
+}
+
+.hidden {
+  box-sizing: border-box;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.feedback {
+  padding-top: 0.2rem;
+  height: 1.1rem;
 }
