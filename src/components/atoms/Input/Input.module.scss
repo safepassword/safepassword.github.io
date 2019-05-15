@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: center;
   padding: 0 1.2rem;
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
 
   .input {
     padding: 0.8rem 0;
@@ -20,8 +22,8 @@
     display: inline-block;
     width: 100%;
     text-align: inherit;
-    font-size: 1.1rem;
-    font-family: 'Roboto', sans-serif;
+    font-size: inherit;
+    font-family: inherit;
 
     &.margin {
       margin-left: 0.5rem;

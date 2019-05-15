@@ -3,6 +3,7 @@ import React from 'react'
 import Popup from 'components/atoms/Popup'
 import Button from 'components/atoms/Button'
 import ButtonList from 'components/atoms/ButtonList'
+import Input from 'components/atoms/Input'
 
 import style from './Settings.module.scss'
 
@@ -11,7 +12,7 @@ const Settings = ({ show, className, onClick, title, children }) => (
     <div className={style.modal}>
       <h1 className={style.title}>Settings</h1>
       <table className={style.table}>
-        <tr className={style.setting}>
+        {/*<tr className={style.setting}>
           <td className={style.label}>
             <h2 className={style.name}>Passphrase</h2>
             <p className={style.p}>
@@ -21,12 +22,13 @@ const Settings = ({ show, className, onClick, title, children }) => (
           <td className={style.action}>
             <Button className={`${style.basic} ${style.button}`}>Update</Button>
           </td>
-        </tr>
+        </tr> */}
         <tr className={style.setting}>
           <td className={style.label}>
-            <h2 className={style.name}>Timeout</h2>
+            <h2 className={style.name}>Connection timeout</h2>
             <p className={style.p}>
-              Automatic disconnection after a long time of inactivity.
+              Automatic disconnection from the web application after a long time
+              of inactivity.
             </p>
           </td>
           <td className={style.action}>
@@ -40,7 +42,19 @@ const Settings = ({ show, className, onClick, title, children }) => (
             />
           </td>
         </tr>
-        <tr className={style.setting}>
+        {/*<tr className={style.setting}>
+          <td className={style.label}>
+            <h2 className={style.name}>Expiration date</h2>
+            <p className={style.p}>
+              The passwords older than the expiration duration will be tagged as
+              outdated (but will still work).
+            </p>
+          </td>
+          <td className={style.action}>
+            <Input placeholder="1 year" className={style.input} />
+          </td>
+        </tr>*/}
+        {/*<tr className={style.setting}>
           <td className={style.label}>
             <h2 className={style.name}>Delete account</h2>
             <p className={style.p}>
@@ -52,7 +66,7 @@ const Settings = ({ show, className, onClick, title, children }) => (
               Delete
             </Button>
           </td>
-        </tr>
+        </tr>*/}
       </table>
     </div>
   </Popup>

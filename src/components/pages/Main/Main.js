@@ -9,18 +9,12 @@ import SignIn from 'components/organisms/Signin'
 
 import Editor from 'components/organisms/Editor'
 
+import Context, { routes } from 'contexts/route'
+
 import style from './Main.module.scss'
 
-const stages = {
-  SIGN_IN: 'sign-in',
-  CONNECT_GOOGLE: 'connect-google',
-  SETUP_PASSPHRASE: 'setup-passphrase',
-  CONFIRM_PASSPHRASE: 'confirm-passphrase',
-  EDIT: 'edit',
-}
-
 const Main = () => {
-  const [ stage, setStage ] = useState(stages.SIGN_IN)
+  const [ stage, setStage ] = useState(routes.EDIT)
   const [ passphrase, setPassphrase ] = useState('')
   const [ loading, setLoad ] = useState(true)
 
@@ -33,49 +27,51 @@ const Main = () => {
   const loadingClassName = loading ? style.loading : style.loaded
 
   return (
-    <div className={`${style.Main} ${loadingClassName} `}>
-      <Welcome className={style.welcome} />
-      <div className={`${style.panel} ${style[stage]}`}>
-        <Connect
-          className={`${style.sidePanel} ${style.connect} ${
-            style[stage]
-          } ${loadingClassName}`}
-          onConnect={() => setStage(stages.SETUP_PASSPHRASE)}
-        />
-        <SetupPassphrase
-          className={`${style.sidePanel} ${style.setup} ${
-            style[stage]
-          } ${loadingClassName}`}
-          onSubmit={passphrase => {
-            setStage(stages.CONFIRM_PASSPHRASE)
-            setPassphrase(passphrase)
-          }}
-          onCancel={() => setStage(stages.CONNECT_GOOGLE)}
-          show={stage === stages.SETUP_PASSPHRASE}
-        />
-        <ConfirmPassphrase
-          className={`${style.sidePanel} ${style.confirm} ${
-            style[stage]
-          } ${loadingClassName}`}
-          onConfirm={() => setStage(stages.EDIT)}
-          onCancel={() => setStage(stages.SETUP_PASSPHRASE)}
-          expectedPassphrase={passphrase}
-          show={stage === stages.CONFIRM_PASSPHRASE}
-        />
-        <SignIn
-          className={`${style.sidePanel} ${style.signIn} ${
-            style[stage]
-          } ${loadingClassName}`}
-          onConfirm={() => setStage(stages.EDIT)}
-          expectedPassphrase="azerty"
-          show={stage === stages.SIGN_IN}
-        />
-        <Editor
-          className={`${style.full} ${style[stage]} ${loadingClassName}`}
-          show={stage === stages.EDIT}
-        />
+    <Context.Provider value={{ change: route => setStage(route) }}>
+      <div className={`${style.Main} ${loadingClassName} `}>
+        <Welcome className={style.welcome} />
+        <div className={`${style.panel} ${style[stage]}`}>
+          <Connect
+            className={`${style.sidePanel} ${style.connect} ${
+              style[stage]
+            } ${loadingClassName}`}
+            onConnect={() => setStage(routes.SETUP_PASSPHRASE)}
+          />
+          <SetupPassphrase
+            className={`${style.sidePanel} ${style.setup} ${
+              style[stage]
+            } ${loadingClassName}`}
+            onSubmit={passphrase => {
+              setStage(routes.CONFIRM_PASSPHRASE)
+              setPassphrase(passphrase)
+            }}
+            onCancel={() => setStage(routes.CONNECT_GOOGLE)}
+            show={stage === routes.SETUP_PASSPHRASE}
+          />
+          <ConfirmPassphrase
+            className={`${style.sidePanel} ${style.confirm} ${
+              style[stage]
+            } ${loadingClassName}`}
+            onConfirm={() => setStage(routes.EDIT)}
+            onCancel={() => setStage(routes.SETUP_PASSPHRASE)}
+            expectedPassphrase={passphrase}
+            show={stage === routes.CONFIRM_PASSPHRASE}
+          />
+          <SignIn
+            className={`${style.sidePanel} ${style.signIn} ${
+              style[stage]
+            } ${loadingClassName}`}
+            onConfirm={() => setStage(routes.EDIT)}
+            expectedPassphrase="azerty"
+            show={stage === routes.SIGN_IN}
+          />
+          <Editor
+            className={`${style.full} ${style[stage]} ${loadingClassName}`}
+            show={stage === routes.EDIT}
+          />
+        </div>
       </div>
-    </div>
+    </Context.Provider>
   )
 }
 

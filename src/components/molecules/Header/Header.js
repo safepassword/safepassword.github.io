@@ -6,6 +6,8 @@ import Button from 'components/atoms/Button'
 import Menu, { MenuItem } from 'components/atoms/Menu'
 import Settings from 'components/molecules/Settings'
 
+import Context, { routes } from 'contexts/route'
+
 import { ReactComponent as Search } from 'assets/search.svg'
 import { ReactComponent as Add } from 'assets/plus.svg'
 
@@ -20,46 +22,57 @@ const Header = ({
   onSubmit,
 }) => {
   const menuRef = useRef(null)
-  const [ settingsAreOpen, openSettings ] = useState(false)
+  const [ settingsAreOpen, openSettings ] = useState(true)
   return (
-    <header className={style.header}>
-      <form className={style.content} onSubmit={onSubmit}>
-        <div className={style.flex}>
-          {/* <Button className={style.add} primary>
-            <Add className={style.addIcon} />
-          </Button>*/}
-          <Input
-            className={style.search}
-            icon={<Search />}
-            placeholder="Search"
-            defaultValue={query}
-            onChange={onQueryChange}
-            focus={focus}
+    <Context.Consumer>
+      {({ change }) => (
+        <header className={style.header}>
+          <form className={style.content} onSubmit={onSubmit}>
+            <div className={style.flex}>
+              {/* <Button className={style.add} primary>
+                <Add className={style.addIcon} />
+              </Button>*/}
+              <Input
+                className={style.search}
+                icon={<Search />}
+                placeholder="Search"
+                defaultValue={query}
+                onChange={onQueryChange}
+                focus={focus}
+              />
+              <Button
+                className={style.avatar}
+                onClick={event => menuRef.current.toggle(event)}
+              />
+              <Menu ref={menuRef} className={style.menu} position="right">
+                {/* <MenuItem title="Switch to advanced mode" /> */}
+                <MenuItem
+                  title="Settings"
+                  onClick={event => {
+                    openSettings(true)
+                    menuRef.current.close(event)
+                  }}
+                />
+                <MenuItem
+                  title="Sign out"
+                  onClick={() => change(routes.SIGN_IN)}
+                />
+              </Menu>
+            </div>
+            {children}
+            <input type="submit" value="Submit" className={style.hidden} />
+          </form>
+          <Settings
+            show={settingsAreOpen}
+            onClick={() => openSettings(false)}
           />
-          <Button
-            className={style.avatar}
-            onClick={event => menuRef.current.toggle(event)}
-          />
-          <Menu ref={menuRef} className={style.menu} position="right">
-            {/* <MenuItem title="Switch to advanced mode" /> */}
-            <MenuItem
-              title="Settings"
-              onClick={event => {
-                openSettings(true)
-                menuRef.current.close(event)
-              }}
-            />
-            <MenuItem title="Sign out" />
-          </Menu>
-        </div>
-        {children}
-        <input type="submit" value="Submit" className={style.hidden} />
-      </form>
-      <Settings show={settingsAreOpen} onClick={() => openSettings(false)} />
-    </header>
+        </header>
+      )}
+    </Context.Consumer>
   )
 }
 
+Header.contextType = Context
 Header.defaultProps = {
   className: '',
   onQueryChange: () => {},
